@@ -1,0 +1,138 @@
+import json
+import os
+from datetime import datetime
+
+def generate_master_data():
+    data = {
+        "version": datetime.now().strftime("%Y.%m.%d.%H%M"),
+        "last_updated": datetime.now().strftime("%d.%m.%Y %H:%M"),
+        "regions": [
+            "Tümü",
+            "Marmara Bölgesi",
+            "Ege Bölgesi",
+            "İç Anadolu Bölgesi",
+            "Akdeniz Bölgesi",
+            "Karadeniz Bölgesi",
+            "Doğu Anadolu Bölgesi",
+            "Güneydoğu Anadolu Bölgesi"
+        ],
+        "brands": [
+            {"id": "renault", "name": "Renault", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/renault.png"},
+            {"id": "fiat", "name": "Fiat", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/fiat.png"},
+            {"id": "volkswagen", "name": "Volkswagen", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/volkswagen.png"},
+            {"id": "toyota", "name": "Toyota", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/toyota.png"},
+            {"id": "hyundai", "name": "Hyundai", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/hyundai.png"},
+            {"id": "peugeot", "name": "Peugeot", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/peugeot.png"},
+            {"id": "chery", "name": "Chery", "logo": "https://www.car-logos.org/wp-content/uploads/2023/03/chery.png"},
+            {"id": "byd", "name": "BYD", "logo": "https://www.car-logos.org/wp-content/uploads/2023/03/byd.png"},
+            {"id": "bmw", "name": "BMW", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/bmw.png"},
+            {"id": "mercedes", "name": "Mercedes-Benz", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/mercedes-benz.png"},
+            {"id": "audi", "name": "Audi", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/audi.png"},
+            {"id": "ford", "name": "Ford", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/ford.png"},
+            {"id": "opel", "name": "Opel", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/opel.png"},
+            {"id": "citroen", "name": "Citroën", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/citroen.png"},
+            {"id": "skoda", "name": "Skoda", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/skoda.png"},
+            {"id": "dacia", "name": "Dacia", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/dacia.png"},
+            {"id": "cupra", "name": "Cupra", "logo": "https://www.car-logos.org/wp-content/uploads/2023/03/cupra.png"},
+            {"id": "seat", "name": "Seat", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/seat.png"},
+            {"id": "nissan", "name": "Nissan", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/nissan.png"},
+            {"id": "kia", "name": "Kia", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/kia.png"},
+            {"id": "volvo", "name": "Volvo", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/volvo.png"},
+            {"id": "honda", "name": "Honda", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/honda.png"},
+            {"id": "suzuki", "name": "Suzuki", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/suzuki.png"},
+            {"id": "mg", "name": "MG", "logo": "https://www.car-logos.org/wp-content/uploads/2023/03/mg.png"},
+            {"id": "togg", "name": "Togg", "logo": "https://www.car-logos.org/wp-content/uploads/2023/03/togg.png"},
+            {"id": "tesla", "name": "Tesla", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/tesla.png"},
+            {"id": "jeep", "name": "Jeep", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/jeep.png"},
+            {"id": "alfa", "name": "Alfa Romeo", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/alfa_romeo.png"},
+            {"id": "porsche", "name": "Porsche", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/porsche.png"},
+            {"id": "mini", "name": "Mini", "logo": "https://www.car-logos.org/wp-content/uploads/2011/09/mini.png"}
+        ],
+        "dealers": [
+            # MARMARA BÖLGESİ - İSTANBUL
+            {"id": "d1", "brandName": "Renault", "name": "Mais Boğaziçi", "city": "İstanbul", "district": "Şişli", "region": "Marmara Bölgesi", "address": "Büyükdere Cad. No: 145, Zincirlikuyu", "phone": "+902123150000"},
+            {"id": "d2", "brandName": "Fiat", "name": "Birmot Zincirlikuyu", "city": "İstanbul", "district": "Şişli", "region": "Marmara Bölgesi", "address": "Büyükdere Cad. No: 120, Şişli", "phone": "+902123402000"},
+            {"id": "d3", "brandName": "Volkswagen", "name": "Doğuş Oto Maslak", "city": "İstanbul", "district": "Sarıyer", "region": "Marmara Bölgesi", "address": "Maslak Mah. Ahi Evran Cad. No: 4", "phone": "+902123353000"},
+            {"id": "d4", "brandName": "Ford", "name": "Otokoç İstinye", "city": "İstanbul", "district": "Sarıyer", "region": "Marmara Bölgesi", "address": "İstinye Cad. No: 12, Sarıyer", "phone": "+902123230000"},
+            {"id": "d5", "brandName": "Toyota", "name": "Toyota Plaza Plaza Plaza Nakkastepe", "city": "İstanbul", "district": "Üsküdar", "region": "Marmara Bölgesi", "address": "Gümüşyolu Cad. No: 3, Nakkaştepe", "phone": "+902165312000"},
+            {"id": "d6", "brandName": "Chery", "name": "Chery Görat Kadıköy", "city": "İstanbul", "district": "Kadıköy", "region": "Marmara Bölgesi", "address": "E-5 Karayolu Üzeri No: 44, Kozyatağı", "phone": "+902164101010"},
+            {"id": "d7", "brandName": "BYD", "name": "BYD ALJ Çekmeköy", "city": "İstanbul", "district": "Çekmeköy", "region": "Marmara Bölgesi", "address": "Şile Otoyolu 3. km No: 18", "phone": "+902166400000"},
+            {"id": "d8", "brandName": "Peugeot", "name": "Peugeot Aktif İriyıl", "city": "İstanbul", "district": "Ümraniye", "region": "Marmara Bölgesi", "address": "Alemdağ Cad. No: 210, Ümraniye", "phone": "+902165201010"},
+            {"id": "d9", "brandName": "Hyundai", "name": "Hyundai Hunko Ataşehir", "city": "İstanbul", "district": "Ataşehir", "region": "Marmara Bölgesi", "address": "Vedat Günyol Cad. No: 12", "phone": "+902165700000"},
+            {"id": "d10", "brandName": "BMW", "name": "Borusan Otomotiv İstinye", "city": "İstanbul", "district": "Sarıyer", "region": "Marmara Bölgesi", "address": "İstinye Cad. No: 32", "phone": "+902123593000"},
+            {"id": "d11", "brandName": "Mercedes-Benz", "name": "Mengerler Davutpaşa", "city": "İstanbul", "district": "Zeytinburnu", "region": "Marmara Bölgesi", "address": "Yılanlı Ayazma Yolu No: 12", "phone": "+902124840000"},
+            {"id": "d12", "brandName": "Audi", "name": "Doğuş Oto Kartal", "city": "İstanbul", "district": "Kartal", "region": "Marmara Bölgesi", "address": "Soğanlık Yeni Mah. D-100 Yanyol No: 38", "phone": "+902165864000"},
+            {"id": "d13", "brandName": "Opel", "name": "Opel Odak Topkapı", "city": "İstanbul", "district": "Zeytinburnu", "region": "Marmara Bölgesi", "address": "Topkapı Yolu No: 8", "phone": "+902124810000"},
+            {"id": "d14", "brandName": "Citroën", "name": "Citroën Değer Florya", "city": "İstanbul", "district": "Bakırköy", "region": "Marmara Bölgesi", "address": "E-5 Yanyol Florya Sapağı No: 2", "phone": "+902126630000"},
+            {"id": "d15", "brandName": "Togg", "name": "Togg Deneyim Merkezi Zorlu Center", "city": "İstanbul", "district": "Beşiktaş", "region": "Marmara Bölgesi", "address": "Zorlu Center Meydan Katı", "phone": "+908502228644"},
+            {"id": "d16", "brandName": "Tesla", "name": "Tesla Store Akasya", "city": "İstanbul", "district": "Üsküdar", "region": "Marmara Bölgesi", "address": "Akasya AVM Zemin Kat", "phone": "+902162500000"},
+
+            # MARMARA BÖLGESİ - BURSA & KOCAELİ & TEKİRDAĞ
+            {"id": "d17", "brandName": "Fiat", "name": "Birmot Bursa", "city": "Bursa", "district": "Nilüfer", "region": "Marmara Bölgesi", "address": "İzmir Yolu 8. km, Nilüfer", "phone": "+902244410000"},
+            {"id": "d18", "brandName": "Renault", "name": "Mais Bursa", "city": "Bursa", "district": "Osmangazi", "region": "Marmara Bölgesi", "address": "Yeni Yalova Yolu 4. km", "phone": "+902242110000"},
+            {"id": "d19", "brandName": "Volkswagen", "name": "Doğuş Oto Bursa", "city": "Bursa", "district": "Nilüfer", "region": "Marmara Bölgesi", "address": "İzmir Yolu Cad. No: 110", "phone": "+902242802000"},
+            {"id": "d20", "brandName": "Ford", "name": "Otokoç Kocaeli", "city": "Kocaeli", "district": "İzmit", "region": "Marmara Bölgesi", "address": "D100 Karayolu Üzeri No: 45", "phone": "+902623110000"},
+            {"id": "d21", "brandName": "Toyota", "name": "Toyota Plaza Kaya Kocaeli", "city": "Kocaeli", "district": "Başiskele", "region": "Marmara Bölgesi", "address": "Ovacık Mah. D100 Yanyol No: 18", "phone": "+902623351100"},
+            {"id": "d22", "brandName": "Hyundai", "name": "Hyundai Fertan Tekirdağ", "city": "Tekirdağ", "district": "Süleymanpaşa", "region": "Marmara Bölgesi", "address": "İstanbul Yolu 3. km", "phone": "+902822630000"},
+
+            # EGE BÖLGESİ - İZMİR, MUĞLA, AYDIN, DENİZLİ, MANİSA
+            {"id": "d23", "brandName": "Renault", "name": "Mais İzmir Şubesi", "city": "İzmir", "district": "Bornova", "region": "Ege Bölgesi", "address": "Ankara Cad. No: 55, Bornova", "phone": "+902324610000"},
+            {"id": "d24", "brandName": "Volkswagen", "name": "Vosmer Otomotiv Gaziemir", "city": "İzmir", "district": "Gaziemir", "region": "Ege Bölgesi", "address": "Akçay Cad. No: 280, Gaziemir", "phone": "+902322816000"},
+            {"id": "d25", "brandName": "Fiat", "name": "Poyraz Otomotiv Alsancak", "city": "İzmir", "district": "Konak", "region": "Ege Bölgesi", "address": "Şehitler Cad. No: 88, Alsancak", "phone": "+902324630000"},
+            {"id": "d26", "brandName": "Toyota", "name": "Toyota Plaza Borovalı", "city": "İzmir", "district": "Bornova", "region": "Ege Bölgesi", "address": "Ankara Cad. No: 220", "phone": "+902323881100"},
+            {"id": "d27", "brandName": "Chery", "name": "Chery Vosmer İzmir", "city": "İzmir", "district": "Bornova", "region": "Ege Bölgesi", "address": "Ankara Cad. No: 180", "phone": "+902323990000"},
+            {"id": "d28", "brandName": "BMW", "name": "Özgörkey Otomotiv", "city": "İzmir", "district": "Bornova", "region": "Ege Bölgesi", "address": "Ankara Cad. No: 140", "phone": "+902324980000"},
+            {"id": "d29", "brandName": "Toyota", "name": "Yarbaş Otomotiv Muğla", "city": "Muğla", "district": "Menteşe", "region": "Ege Bölgesi", "address": "Emirbeyazıt Mah. Aydın Bulvarı No: 88", "phone": "+902522143000"},
+            {"id": "d30", "brandName": "Fiat", "name": "Yön Otomotiv Fethiye", "city": "Muğla", "district": "Fethiye", "region": "Ege Bölgesi", "address": "Muğla Karayolu 5. km", "phone": "+902526120000"},
+            {"id": "d31", "brandName": "Renault", "name": "Kutay Otomotiv Bodrum", "city": "Muğla", "district": "Bodrum", "region": "Ege Bölgesi", "address": "Ortakent Yolu Üzeri No: 15", "phone": "+902523585000"},
+            {"id": "d32", "brandName": "Ford", "name": "Helvacıoğlu Otomotiv", "city": "Muğla", "district": "Marmaris", "region": "Ege Bölgesi", "address": "Datça Yolu Üzeri 2. km", "phone": "+902524120000"},
+            {"id": "d33", "brandName": "Renault", "name": "Sadıkoğlu Otomotiv Aydın", "city": "Aydın", "district": "Efeler", "region": "Ege Bölgesi", "address": "Denizli Karayolu 3. km, Efeler", "phone": "+902562115500"},
+            {"id": "d34", "brandName": "Fiat", "name": "Enerya Otomotiv Denizli", "city": "Denizli", "district": "Merkezefendi", "region": "Ege Bölgesi", "address": "Sümer Mah. İzmir Bulvarı No: 12", "phone": "+902582681122"},
+            {"id": "d35", "brandName": "Peugeot", "name": "Halil İbrahim Özcan Otomotiv", "city": "Manisa", "district": "Yunusemre", "region": "Ege Bölgesi", "address": "Mimar Sinan Bulvarı No: 90", "phone": "+902362330000"},
+
+            # İÇ ANADOLU BÖLGESİ - ANKARA, KONYA, KAYSERİ, ESKİŞEHİR
+            {"id": "d36", "brandName": "Fiat", "name": "Ali Uğurlu Otomotiv Ankara", "city": "Ankara", "district": "Çankaya", "region": "İç Anadolu Bölgesi", "address": "Konya Yolu 5. km No: 42", "phone": "+903124800000"},
+            {"id": "d37", "brandName": "Toyota", "name": "Toyota Plaza ALJ Ankara", "city": "Ankara", "district": "Etimesgut", "region": "İç Anadolu Bölgesi", "address": "İstanbul Yolu 12. km No: 320", "phone": "+903122803000"},
+            {"id": "d38", "brandName": "Volkswagen", "name": "Doğuş Oto Çankaya", "city": "Ankara", "district": "Çankaya", "region": "İç Anadolu Bölgesi", "address": "Turan Güneş Bulvarı No: 65", "phone": "+903124900000"},
+            {"id": "d39", "brandName": "Renault", "name": "Mais Ankara Şubesi", "city": "Ankara", "district": "Yenimahalle", "region": "İç Anadolu Bölgesi", "address": "İstanbul Yolu 6. km", "phone": "+903123850000"},
+            {"id": "d40", "brandName": "Chery", "name": "Chery Tanoto Ankara", "city": "Ankara", "district": "Yenimahalle", "region": "İç Anadolu Bölgesi", "address": "İstanbul Yolu 8. km", "phone": "+903123970000"},
+            {"id": "d41", "brandName": "Hyundai", "name": "Akar Plaza Kayseri", "city": "Kayseri", "district": "Kocasinan", "region": "İç Anadolu Bölgesi", "address": "Sivas Cad. No: 110", "phone": "+903522223344"},
+            {"id": "d42", "brandName": "Ford", "name": "Otokoç Konya", "city": "Konya", "district": "Selçuklu", "region": "İç Anadolu Bölgesi", "address": "Ankara Yolu 3. km No: 50", "phone": "+903322350000"},
+            {"id": "d43", "brandName": "Renault", "name": "Çelik Otomotiv Eskişehir", "city": "Eskişehir", "district": "Tepebaşı", "region": "İç Anadolu Bölgesi", "address": "Bursa Yolu 2. km", "phone": "+902223200000"},
+
+            # AKDENİZ BÖLGESİ - ANTALYA, ADANA, MERSİN, HATAY
+            {"id": "d44", "brandName": "Renault", "name": "Zaman Otomotiv Antalya", "city": "Antalya", "district": "Kepez", "region": "Akdeniz Bölgesi", "address": "Gazi Bulvarı No: 300", "phone": "+902423400000"},
+            {"id": "d45", "brandName": "Volkswagen", "name": "Başaran Otomotiv Antalya", "city": "Antalya", "district": "Muratpaşa", "region": "Akdeniz Bölgesi", "address": "Aspendos Bulvarı No: 120", "phone": "+902423120000"},
+            {"id": "d46", "brandName": "Fiat", "name": "Birmot Adana", "city": "Adana", "district": "Seyhan", "region": "Akdeniz Bölgesi", "address": "Turhan Cemal Beriker Bulvarı No: 150", "phone": "+903224350000"},
+            {"id": "d47", "brandName": "Toyota", "name": "Toyota Plaza Mıstık Adana", "city": "Adana", "district": "Seyhan", "region": "Akdeniz Bölgesi", "address": "Mersin Yolu 5. km No: 210", "phone": "+903224450000"},
+            {"id": "d48", "brandName": "Hyundai", "name": "Hyundai Derya Mersin", "city": "Mersin", "district": "Mezitli", "region": "Akdeniz Bölgesi", "address": "Gazi Mustafa Kemal Bulvarı No: 500", "phone": "+903243580000"},
+            {"id": "d49", "brandName": "Ford", "name": "Otosay Hatay", "city": "Hatay", "district": "Antakya", "region": "Akdeniz Bölgesi", "address": "İskenderun Yolu 4. km", "phone": "+903262250000"},
+
+            # KARADENİZ BÖLGESİ - SAMSUN, TRABZON, ORDU, RİZE
+            {"id": "d50", "brandName": "Fiat", "name": "Üstün Otomotiv Samsun", "city": "Samsun", "district": "Tekkeköy", "region": "Karadeniz Bölgesi", "address": "Atatürk Bulvarı No: 200", "phone": "+903622665000"},
+            {"id": "d51", "brandName": "Toyota", "name": "Toyota Plaza Derindere Samsun", "city": "Samsun", "district": "Tekkeköy", "region": "Karadeniz Bölgesi", "address": "Ordu Karayolu 6. km", "phone": "+903622660000"},
+            {"id": "d52", "brandName": "Renault", "name": "Aksan Otomotiv Trabzon", "city": "Trabzon", "district": "Ortahisar", "region": "Karadeniz Bölgesi", "address": "Rize Cad. No: 80", "phone": "+904623250000"},
+            {"id": "d53", "brandName": "Volkswagen", "name": "Bahadır Otomotiv Trabzon", "city": "Trabzon", "district": "Akçaabat", "region": "Karadeniz Bölgesi", "address": "Devlet Karayolu Üzeri No: 40", "phone": "+904622480000"},
+            {"id": "d54", "brandName": "Volkswagen", "name": "Özön Otomotiv Ordu", "city": "Ordu", "district": "Altınordu", "region": "Karadeniz Bölgesi", "address": "Atatürk Bulvarı No: 140", "phone": "+904522330000"},
+            {"id": "d55", "brandName": "Ford", "name": "Atılgan Otomotiv Rize", "city": "Rize", "district": "Merkez", "region": "Karadeniz Bölgesi", "address": "Menderes Bulvarı No: 110", "phone": "+904642130000"},
+
+            # DOĞU & GÜNEYDOĞU ANADOLU BÖLGESİ - GAZİANTEP, DİYARBAKIR, ERZURUM, VAN, ŞANLIURFA
+            {"id": "d56", "brandName": "Hyundai", "name": "Karpetsan Otomotiv Gaziantep", "city": "Gaziantep", "district": "Şehitkamil", "region": "Güneydoğu Anadolu", "address": "İpek Yolu Üzeri 3. km", "phone": "+903423290000"},
+            {"id": "d57", "brandName": "Renault", "name": "İmam Çağdaş Otomotiv Gaziantep", "city": "Gaziantep", "district": "Şahinbey", "region": "Güneydoğu Anadolu", "address": "Gaziantep Küsget Sanayi Sitesi", "phone": "+903422300000"},
+            {"id": "d58", "brandName": "Renault", "name": "Cihan Otomotiv Diyarbakır", "city": "Diyarbakır", "district": "Kayapınar", "region": "Güneydoğu Anadolu", "address": "Urfa Yolu 2. km", "phone": "+904122520000"},
+            {"id": "d59", "brandName": "Fiat", "name": "Birmot Diyarbakır", "city": "Diyarbakır", "district": "Bağlar", "region": "Güneydoğu Anadolu", "address": "Şanlıurfa Bulvarı No: 100", "phone": "+904122370000"},
+            {"id": "d60", "brandName": "Volkswagen", "name": "Erzurum Er Otomotiv", "city": "Erzurum", "district": "Yakutiye", "region": "Doğu Anadolu Bölgesi", "address": "Erzincan Karayolu 4. km", "phone": "+904422420000"},
+            {"id": "d61", "brandName": "Toyota", "name": "Toyota Plaza Ayan Van", "city": "Van", "district": "İpekyolu", "region": "Doğu Anadolu Bölgesi", "address": "Erciş Yolu Üzeri 2. km", "phone": "+904322170000"},
+            {"id": "d62", "brandName": "Ford", "name": "Özgörkey Şanlıurfa", "city": "Şanlıurfa", "district": "Haliliye", "region": "Güneydoğu Anadolu", "address": "Mardin Yolu 3. km", "phone": "+904143130000"}
+        ]
+    }
+
+    with open("data.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+    print(f"🔥 DEVASE DATA OLUŞTURULDU!")
+    print(f"-> Marka Sayısı: {len(data['brands'])}")
+    print(f"-> Bayi Sayısı: {len(data['dealers'])}")
+
+if __name__ == "__main__":
+    generate_master_data()
